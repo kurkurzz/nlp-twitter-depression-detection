@@ -52,7 +52,7 @@ if st.button('Submit', key=None):
 			ax.pie(y, labels=labels, startangle=90, 
 					textprops={'color':"w"}, autopct='%1.0f%%',
 					explode=explode, colors=['green', 'red'])
-		st.header('Result')
+		st.header('Your Tweets Sentiment')
 		st.pyplot(fig, transparent=True)
 		st.markdown(f'### We analyzed <span style="color:yellow">{len(df)}</span> of your tweets from the past 3 months.', unsafe_allow_html=True)
 		st.markdown(f'### The result shows that <span style="color:red">{(len(df) - total_positive)/len(df)*100:.0f}%</span> of the tweets are <span style="color:red">negative</span>.', unsafe_allow_html=True)
@@ -66,4 +66,4 @@ if st.button('Submit', key=None):
 		st.exception(e)
 
 st.caption('''Disclaimer: This should not be used to diagnose mental health. 
-Mental health is a disease and only could be diagnose by a doctor.''')
+Mental health problem is a disease and could only be diagnosed by a doctor.''')
