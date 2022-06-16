@@ -25,6 +25,7 @@ def scrape_tweet(username):
 	# c.Output = 'tweets.csv'
 	twint.run.Search(c)
 
+st.markdown('<style> p {font-size: 1.5rem} </style>', unsafe_allow_html=True)
 st.title('Twitter Depression Detection.')
 st.caption("")
 username = st.text_input('Please insert twitter username in the field below.')
@@ -54,16 +55,17 @@ if st.button('Submit', key=None):
 					explode=explode, colors=['green', 'red'])
 		st.header('Your Tweets Sentiment')
 		st.pyplot(fig, transparent=True)
-		st.markdown(f'### We analyzed <span style="color:yellow">{len(df)}</span> of your tweets from the past 3 months.', unsafe_allow_html=True)
+		st.markdown(f'### We analyzed <span style="color:yellow">{len(df)}</span> of your tweets from the past <span style="color:yellow">3 months</span>.', unsafe_allow_html=True)
 		st.markdown(f'### The result shows that <span style="color:red">{(len(df) - total_positive)/len(df)*100:.0f}%</span> of the tweets are <span style="color:red">negative</span>.', unsafe_allow_html=True)
+		# st.markdown(f'### You have <span style="color:yellow">{overall_sentiment:.2f}</span> probability of having mental health problems.', unsafe_allow_html=True)
 		# st.markdown(f'### You overall sentiment is: {overall_sentiment}')
 		# st.progre()
 		if (len(df) - total_positive)/len(df) >= 0.5:
-			st.error(f'You are showing depressive symptom and we recommend you to consult with a therapist for a check up and diagnosis.')
+			st.error(f'You are showing depressive symptoms. We recommend you to consult with a therapist for a check up and diagnosis.')
 		else:
 			st.success(f'Your mental health is probably in a good condition. Keep it up and take care of yourself always.')
 	except Exception as e:
-		st.exception(e)
+		st.error(e)
 
 st.caption('''Disclaimer: This should not be used to diagnose mental health. 
 Mental health problem is a disease and could only be diagnosed by a doctor.''')
